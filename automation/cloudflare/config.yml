@@ -1,0 +1,23 @@
+# ==============================================================
+# Cloudflare Tunnel Configuration for jobrecruitment.ai
+# ==============================================================
+
+tunnel: 5a170a20-224b-4542-886c-87733cf0d822
+credentials-file: E:\automation\cloudflare\tunnel_credentials.json
+
+ingress:
+  # CV Parser — FastAPI OCR & Resume Parsing (Port 8000)
+  - hostname: cv-parser.jobrecruitment.ai
+    service: http://127.0.0.1:8000
+
+  # AI Matching Webhook — Background Job Matcher (Port 8005)
+  - hostname: ai-matcher.jobrecruitment.ai
+    service: http://127.0.0.1:8005
+
+  # Admin / UI Service (Port 3100)
+  - hostname: admin.jobrecruitment.ai
+    service: http://127.0.0.1:3100
+
+  # Catch-all (returns 404 for unmatched hostnames)
+  - service: http_status:404
+
