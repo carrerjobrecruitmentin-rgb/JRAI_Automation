@@ -1,0 +1,64 @@
+# ==============================================================================
+# Render.com Blueprint Specification for JobRecruitmentAI Automation
+# ==============================================================================
+
+services:
+  # 1. API Gateway & Microservices Web Service
+  - type: web
+    name: jrai-automation-gateway
+    env: docker
+    dockerfilePath: Dockerfile
+    plan: free
+    region: oregon
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: ENVIRONMENT
+        value: production
+      - key: PORT
+        value: 8000
+      - key: DB_HOST
+        sync: false
+      - key: DB_USER
+        sync: false
+      - key: DB_PASS
+        sync: false
+      - key: DB_NAME
+        sync: false
+      - key: DB_PORT
+        value: "3306"
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+      - key: API_GATEWAY_KEY
+        sync: false
+      - key: SECRET_KEY
+        generateValue: true
+
+  # 2. Background Government Job Crawler Worker (Optional)
+  - type: worker
+    name: jrai-gov-crawler-worker
+    env: docker
+    dockerfilePath: Dockerfile
+    dockerCommand: python -m workers.gov_job_worker
+    plan: free
+    region: oregon
+    autoDeploy: true
+    envVars:
+      - key: ENVIRONMENT
+        value: production
+      - key: DB_HOST
+        sync: false
+      - key: DB_USER
+        sync: false
+      - key: DB_PASS
+        sync: false
+      - key: DB_NAME
+        sync: false
+      - key: DB_PORT
+        value: "3306"
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false

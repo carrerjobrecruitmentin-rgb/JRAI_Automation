@@ -1,0 +1,27 @@
+# Core Web & API Gateway
+fastapi>=0.110.0
+uvicorn[standard]>=0.28.0
+pydantic>=2.6.0
+pydantic-settings>=2.2.0
+python-dotenv>=1.0.1
+requests>=2.31.0
+python-multipart>=0.0.9
+
+# AI & LLM Providers
+groq>=0.4.0
+
+# Document & OCR Parsers
+pytesseract>=0.3.10
+Pillow>=10.2.0
+pdfplumber>=0.10.4
+pypdf>=4.1.0
+python-docx>=1.1.0
+
+# Database
+pymysql>=1.1.0
+cryptography>=42.0.0
+
+# Scheduling & Utilities
+schedule>=1.2.1
+aiofiles>=23.2.1
+gunicorn>=21.2.0
